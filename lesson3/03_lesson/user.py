@@ -10,7 +10,7 @@ class User:
             print(self.last_name)
 
     def print_full_name(self):
-            print(f"f{self.first_name} {self.last_name}")
+            print(f"{self.first_name} {self.last_name}")
 
 
 
