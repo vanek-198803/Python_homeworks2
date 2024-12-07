@@ -9,7 +9,6 @@ class Smartphone:
         return f"{self.brand}, - {self.model}. {self.phone_number}"
 
 
-
 catalog = [
     Smartphone("Apple", "iPhone 13", "+79001234567"),
     Smartphone("Samsung", "Galaxy S21", "+79007654321"),

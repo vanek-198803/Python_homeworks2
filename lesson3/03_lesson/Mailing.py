@@ -8,9 +8,10 @@ class Address:
         self.apartment = apartment
 
     def __str__(self):
-        return f"{self.index}, {self.city}, {self.street}, {self.house}, Apt: {self.apartment}"
+        return (f"{self.index}, {self.city}, {self.street}, {self.house},"
+                f" Apt: {self.apartment}")
 
-    
+
 class Mailing:
 
     def __init__(self, to_address, from_address, cost, track):
@@ -29,4 +30,3 @@ from_address = Address("456206", "Златоуст", "Румянцева", "4", 
 mailing = Mailing(to_address, from_address, 100.50, "TRACK2885")
 
 print(Mailing)
-

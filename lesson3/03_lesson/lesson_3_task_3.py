@@ -22,6 +22,7 @@ to_apartment = mailing.to_address.apartment
 cost = mailing.cost
 
 
-print(f"Отправление {track} из {from_index}, {from_city}, {from_street}, {from_house} - {from_apartment} "
-      f"в {to_index}, {to_city}, {to_street}, {to_house} - {to_apartment}. Стоимость {cost} рублей.")
-
+print(f"Отправление {track} из {from_index}, {from_city},"
+      f" {from_street}, {from_house} - {from_apartment} "
+      f"в {to_index}, {to_city}, {to_street}, {to_house} -"
+      f" {to_apartment}. Стоимость {cost} рублей.")
