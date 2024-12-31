@@ -27,4 +27,4 @@ try:
 
 finally:
     # Закрываем браузер
-    driver.quit(None)
+    driver.quit()
