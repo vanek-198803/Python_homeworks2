@@ -7,7 +7,6 @@ from selenium.webdriver.support import expected_conditions as EC
 def test_shopping_cart():
     driver = webdriver.Chrome()
 
-
     # Открытие веб-страницы
     driver.get("https://www.saucedemo.com/")
 
@@ -17,15 +16,18 @@ def test_shopping_cart():
     driver.find_element(By.XPATH, "//input[@type='submit']").click()
 
     # Добавление товаров в корзину
-    driver.find_element(By.CSS_SELECTOR, '#add-to-cart-sauce-labs-backpack').click()
+    driver.find_element(By.CSS_SELECTOR,
+                        '#add-to-cart-sauce-labs-backpack').click()
 
-    driver.find_element(By.CSS_SELECTOR, '#add-to-cart-sauce-labs-bolt-t-shirt').click()
+    driver.find_element(By.CSS_SELECTOR,
+                        '#add-to-cart-sauce-labs-bolt-t-shirt').click()
 
-    driver.find_element(By.CSS_SELECTOR, '#add-to-cart-sauce-labs-onesie').click()
+    driver.find_element(By.CSS_SELECTOR,
+                        '#add-to-cart-sauce-labs-onesie').click()
 
     # Переход в корзину
     driver.find_element(By.XPATH, "//a[@class='"
-                                       "shopping_cart_link']").click()
+                                  "shopping_cart_link']").click()
     # Нажатие на Checkout
     driver.find_element(By.XPATH, "//button[text()='Checkout']").click()
 
@@ -39,11 +41,9 @@ def test_shopping_cart():
 
     # Ожидание, пока итоги не станут видимыми
     total_element = WebDriverWait(driver, 10).until(
-    EC.visibility_of_element_located((By.CSS_SELECTOR,
-                                              ".summary_total_label"))
-    )
+        EC.visibility_of_element_located((By.CSS_SELECTOR,
+                                          ".summary_total_label")))
 
     # Проверка итоговой суммы
     assert (total_element.text ==
-                "Total: $58.29"), "Итоговая сумма должна быть $58.29"
-
+           "Total: $58.29"), "Итоговая сумма должна быть $58.29"
