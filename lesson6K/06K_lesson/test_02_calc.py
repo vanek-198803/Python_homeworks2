@@ -8,27 +8,26 @@ def test_slow_calculator():
 
     driver = webdriver.Chrome()
 
-    try:
-        driver.get(
-         "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html")
+    driver.get(
+        "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html")
 
-        # Ввод значения в поле по локатору #delay
-        delay_input = driver.find_element(By.CSS_SELECTOR, "#delay")
-        delay_input.send_keys("45")
+    # Ввод значения в поле по локатору #delay
+    delay = driver.find_element(By.CSS_SELECTOR, "input#delay")
+    delay.clear()
+    delay.send_keys("45")
 
-        # Нажатие на кнопки
-        driver.find_element(By.CSS_SELECTOR, "button#seven").click()
-        driver.find_element(By.CSS_SELECTOR, "button#plus").click()
-        driver.find_element(By.CSS_SELECTOR, "button#eight").click()
-        driver.find_element(By.CSS_SELECTOR, "button#do").click()
+    # Нажатие на кнопки
+    driver.find_element(By.XPATH, "//span[text()='7']").click()
+    driver.find_element(By.XPATH, "//span[text()='+']").click()
+    driver.find_element(By.XPATH, "//span[text()='8']").click()
+    driver.find_element(By.XPATH, "//span[text()='=']").click()
 
-        # Ожидание, пока результат не станет видимым
-        result_element = WebDriverWait(driver, 50).until(
-            EC.visibility_of_element_located((By.ID, "result"))
-        )
+    # Ожидание, пока результат не станет видимым
+    WebDriverWait(driver, 45).until(
+        EC.text_to_be_present_in_element((By.CSS_SELECTOR, ".screen"), "15")
+    )
 
-        # Проверка результата
-        assert result_element.text == "15", "Результат должен быть 15"
-
-    finally:
-        driver.quit()
+    # Проверка результата
+    result = driver.find_element(By.CSS_SELECTOR, ".screen").text
+    assert int(result) == 15
+    driver.quit()
