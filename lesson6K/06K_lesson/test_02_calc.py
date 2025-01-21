@@ -23,7 +23,7 @@ def test_slow_calculator():
     driver.find_element(By.XPATH, "//span[text()='=']").click()
 
     # Ожидание, пока результат не станет видимым
-    WebDriverWait(driver, 45).until(
+    WebDriverWait(driver, 46).until(
         EC.text_to_be_present_in_element((By.CSS_SELECTOR, ".screen"), "15")
     )
 
