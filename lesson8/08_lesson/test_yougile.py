@@ -2,14 +2,7 @@ from YouGileAPI import YouGileApi
 
 api = YouGileApi("https://ru.yougile.com")
 
-key = "ZO16LVu8K6SDd5KPk0VaXMNH-vz+-Ee33F+Xm57QarbhF9d-053hBrYG+vzaeMS-"
-# вставить логин и пароль
-#login = "vanek.198803v@gmail.com"
-#password = "Vanek1988"
-#company_name = "Поток_100"
-#company_id = api.get_company_id(login, password, company_name)
-#keys_list = api.get_auth_keys(login, password, company_name)
-#auth_key = keys_list[0]["key"]
+key = "Tkj4pKmsVn6+dM0ipD-g65j-8CXlCYsS574pEFX6BfYWZf30oCUCm1KzaYadkxAX"
 
 
 def test_get_project_list_pozitive():
@@ -28,14 +21,13 @@ def test_project_list_pozitive():
 
 
 def test_create_project_pozitive():
-    project_list_before_create = api.get_project_list(key).json().get("content")
-    api.create_project("ПРивет!", key)
-    project_list_after_create = api.get_project_list(key).json().get("content")
-    assert len(project_list_after_create) > len(project_list_before_create)
+    resp = api.create_project("ПРивет!", key)
+    assert resp.status_code == 201
 
 
 def test_create_project_negative():
-    project_list_before_create = api.get_project_list(key).json().get("content")
+    project_list_before_create = (api.get_project_list(key).json().
+                                  get("content"))
     api.create_project(None, key)
     project_list_after_create = api.get_project_list(key).json().get("content")
     assert len(project_list_after_create) == len(project_list_before_create)

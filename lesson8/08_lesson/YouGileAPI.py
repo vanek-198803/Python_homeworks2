@@ -1,7 +1,6 @@
 import requests
 
 
-
 class YouGileApi:
 
     def __init__(self, url):
@@ -64,7 +63,7 @@ class YouGileApi:
         return response_key.json()
 
     # получить список проектов
-    def get_project_list(self, key=123):
+    def get_project_list(self, key):
         projects_url = self.url + "/api-v2/projects"
         headers = {
             "Content-Type": "application/json"
@@ -85,7 +84,9 @@ class YouGileApi:
 
         projects_url = self.url + "/api-v2/projects"
         headers["Authorization"] = "Bearer " + key
-        requests.post(projects_url, headers=headers, json=create_project_data)
+        resp = requests.post(projects_url, headers=headers,
+                             json=create_project_data)
+        return resp
 
     # получить информацию о проекте
     def get_project_info(self, id, key):
@@ -102,7 +103,7 @@ class YouGileApi:
         return project_info
 
     # изменить проект
-    def change_project(self, id, auth_key, deleted=None, title=None):
+    def change_project(self, id, key, deleted=None, title=None):
         change_project_url = self.url + "/api-v2/projects" + "/" + id
 
         headers = {
