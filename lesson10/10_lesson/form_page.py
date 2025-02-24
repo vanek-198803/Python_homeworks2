@@ -11,16 +11,26 @@ class FormPage(BasePage):
         data (dict): Данные для заполнения формы. Ожидается, что
         словарь содержит ключи, соответствующие полям формы.
         """
-        self._driver.find_element(By.NAME, "first-name").send_keys(data["first_name"])
-        self._driver.find_element(By.NAME, "last-name").send_keys(data["last_name"])
-        self._driver.find_element(By.NAME, "address").send_keys(data["address"])
-        self._driver.find_element(By.NAME, "e-mail").send_keys(data["email"])
-        self._driver.find_element(By.NAME, "phone").send_keys(data["phone"])
-        self._driver.find_element(By.NAME, "zip-code").send_keys(data["zip"])
-        self._driver.find_element(By.NAME, "city").send_keys(data["city"])
-        self._driver.find_element(By.NAME, "country").send_keys(data["country"])
-        self._driver.find_element(By.NAME, "job-position").send_keys(data["job"])
-        self._driver.find_element(By.NAME, "company").send_keys(data["company"])
+        self._driver.find_element(By.NAME,
+                                  "first-name").send_keys(data["first_name"])
+        self._driver.find_element(By.NAME,
+                                  "last-name").send_keys(data["last_name"])
+        self._driver.find_element(By.NAME,
+                                  "address").send_keys(data["address"])
+        self._driver.find_element(By.NAME,
+                                  "e-mail").send_keys(data["email"])
+        self._driver.find_element(By.NAME,
+                                  "phone").send_keys(data["phone"])
+        self._driver.find_element(By.NAME,
+                                  "zip-code").send_keys(data["zip"])
+        self._driver.find_element(By.NAME,
+                                  "city").send_keys(data["city"])
+        self._driver.find_element(By.NAME,
+                                  "country").send_keys(data["country"])
+        self._driver.find_element(By.NAME,
+                                  "job-position").send_keys(data["job"])
+        self._driver.find_element(By.NAME,
+                                  "company").send_keys(data["company"])
 
     def submit_form(self) -> None:
         """
@@ -29,25 +39,26 @@ class FormPage(BasePage):
         (self._driver.find_element
          (By.XPATH, "//button[text()='Submit']").click())
 
-    def get_field_class(self)-> str:
+    def get_field_class(self) -> str:
         """
         Получает класс поля ZIP-кода, чтобы проверить его состояние.
 
         Returns:
          str: Класс поля ZIP-кода.
         """
-        return  self._driver.find_element(By.ID, "zip-code").get_attribute("class")
+        return self._driver.find_element(By.ID,
+                                         "zip-code").get_attribute("class")
 
-    def get_field(self, field_id: str)-> None:
+    def get_field(self, field_id: str) -> None:
         """
-                Проверяет, что поле с заданным идентификатором имеет класс "success".
+        Проверяет, что поле с заданным идентификатором имеет класс "success".
 
-                Args:
-                    field_id (str): Идентификатор поля для проверки.
+        Args:
+        field_id (str): Идентификатор поля для проверки.
 
-                Raises:
-                    AssertionError: Если у поля нет класса "success".
-                """
+        Raises:
+        AssertionError: Если у поля нет класса "success".
+        """
         fields = [
             "first-name",
             "last-name",

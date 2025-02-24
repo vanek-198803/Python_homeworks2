@@ -6,6 +6,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from calculator_page import CalculatorPage
 from selenium.webdriver.common.by import By
 
+
 @pytest.fixture
 def driver() -> webdriver.Chrome:
     """
@@ -14,9 +15,11 @@ def driver() -> webdriver.Chrome:
     Returns:
         webdriver.Chrome: Экземпляр веб-драйвера Chrome.
     """
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().
+                                                    install()))
     yield driver
     driver.quit()
+
 
 @allure.title("Тест медленного калькулятора")
 @allure.description("Проверяет работу медленного калькулятора.")
@@ -32,7 +35,8 @@ def test_slow_calculator(driver: webdriver.Chrome) -> None:
     Returns:
         None
     """
-    driver.get("https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html")
+    (driver.get
+     ("https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html"))
     calculator_page = CalculatorPage(driver)
 
     with allure.step("Установка задержки"):
@@ -45,9 +49,9 @@ def test_slow_calculator(driver: webdriver.Chrome) -> None:
         calculator_page.click_button('=')
 
     with allure.step("Ожидание результата"):
-        calculator_page.wait_for_text(By.CSS_SELECTOR, ".screen", "15", timeout=46)
+        calculator_page.wait_for_text(By.CSS_SELECTOR,
+                                      ".screen", "15", timeout=46)
 
     with allure.step("Проверка результата"):
         result = calculator_page.get_result()
         assert int(result) == 15
-

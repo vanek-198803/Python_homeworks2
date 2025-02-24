@@ -16,11 +16,11 @@ def driver() -> webdriver.Chrome:
     yield driver
     driver.quit()
 
+
 @allure.title("Тест корзины покупок")
 @allure.description("Проверяет работу корзины покупок на сайте.")
 @allure.feature("Корзина")
 @allure.severity(allure.severity_level.NORMAL)
-
 def test_shopping_cart(driver: webdriver.Chrome) -> None:
     """Тест на проверку процесса покупки товаров."""
     driver.get("https://www.saucedemo.com/")
@@ -46,7 +46,7 @@ def test_shopping_cart(driver: webdriver.Chrome) -> None:
         checkout_page.enter_postal_code("123456")
         checkout_page.click_continue()
 
-    with allure.step("Проверка итоговой суммы"):
+    with ((((allure.step("Проверка итоговой суммы"))))):
         total = checkout_page.get_total()
-        assert total == "Total: $58.29", \
-        "Итоговая сумма должна быть $58.29"
+        assert total == "Total: $58.29"
+        ("Итоговая сумма должна быть $58.29")

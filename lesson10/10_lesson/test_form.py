@@ -14,6 +14,7 @@ def driver() -> webdriver.Chrome:
     yield driver
     driver.quit()
 
+
 @allure.title("Тест отправки формы")
 @allure.description("Проверяет, что форма отправляется корректно.")
 @allure.feature("Форма")
@@ -25,7 +26,8 @@ def test_form_submission(driver: webdriver.Chrome) -> None:
             driver (webdriver. Chrome): Экземпляр веб-драйвера Chrome.
         """
     with allure.step("Открыть страницу с формой"):
-        driver.get("https://bonigarcia.dev/selenium-webdriver-java/data-types.html")
+        driver.get(
+            "https://bonigarcia.dev/selenium-webdriver-java/data-types.html")
 
         form_page = FormPage(driver)
 
